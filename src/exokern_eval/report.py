@@ -124,9 +124,9 @@ REPORT_TEMPLATE = """\
 
 {% if baseline %}
 <div class="card">
-  <h2>Comparison with EXOKERN Baseline</h2>
+  <h2>Comparison with EXOKERN SOTA Models (or custom baseline)</h2>
   <table>
-    <tr><th>Metric</th><th>Your Policy</th><th>EXOKERN Baseline</th><th>Delta</th></tr>
+    <tr><th>Metric</th><th>Your Policy</th><th>Reference Baseline</th><th>Delta</th></tr>
     <tr>
       <td>Success Rate</td>
       <td>{{ success_rate }}%</td>
@@ -148,7 +148,7 @@ REPORT_TEMPLATE = """\
       <div class="bar-value">{{ avg_force }} N</div>
     </div>
     <div class="bar-container">
-      <div class="bar-label">EXOKERN</div>
+      <div class="bar-label">Reference</div>
       <div class="bar bar-baseline" style="width: {{ baseline_bar_pct }}%"></div>
       <div class="bar-value">{{ baseline.avg_force }} N</div>
     </div>

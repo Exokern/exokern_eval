@@ -63,7 +63,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--episodes", type=int, default=100, help="Number of rollout episodes")
     parser.add_argument("--output", type=str, default="report.html", help="Output path (.html or .json)")
     parser.add_argument("--baseline", type=str, default="auto",
-                        help="Baseline comparison: 'auto' (EXOKERN built-in), path to JSON, or 'none'")
+                        help="Baseline comparison: 'auto' (EXOKERN SOTA models), path to JSON (your own previous best), or 'none'",)
     parser.add_argument("--condition", type=str, default=None,
                         help="Override condition label (full_ft / no_ft)")
     parser.add_argument("--offline", action="store_true",

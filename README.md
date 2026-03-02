@@ -2,7 +2,7 @@
 
 **Policy Report Card generator for contact-rich manipulation skills.**
 
-Evaluate any policy checkpoint against standardized sim scenarios and get a publication-ready report with success rate, force profiles, and automatic comparison against [EXOKERN](https://huggingface.co/EXOKERN) baselines.
+Evaluate your custom robotic manipulation checkpoints against standardized sim scenarios. Automatically benchmark your models against your own previous bests, or compare them to **EXOKERN's State-of-the-Art (SOTA) Foundation Models** published on [HuggingFace](https://huggingface.co/EXOKERN).
 
 <p align="center">
   <img src="assets/report_dashboard.png" alt="EXOKERN Policy Report Card — HTML Dashboard" width="700">
@@ -28,7 +28,7 @@ This produces an HTML report card with:
 - Success rate with 95% confidence interval
 - Average and peak contact force
 - Completion time
-- Automatic comparison against the EXOKERN baseline (if available)
+- Automatic benchmarking against EXOKERN SOTA Foundation Models (or your own custom JSON baselines)
 - Grade badges (Excellent / Good / Needs Work)
 
 ## Installation
@@ -101,14 +101,29 @@ exokern-eval \
 | `--condition` | auto-detect | Override condition label (`full_ft` / `no_ft`) |
 | `--offline` | `false` | Skip sim, report checkpoint metadata only |
 
-## Built-in Baselines
+## Track Progress or Challenge the SOTA
 
-exokern-eval ships with EXOKERN's validated baselines. When `--baseline auto` (the default), your policy is automatically compared:
+`exokern-eval` is built to help researchers answer two questions: *Am I getting better?* and *Am I better than the current State-of-the-Art?*
 
-| Environment | Condition | Success Rate | Avg Force | Source |
+### 1. Benchmark against yourself
+Track your own progress by saving your best results as a JSON file and passing it to the evaluator. The dashboard will automatically show if your new architectural tweaks improve success rates or reduce contact forces compared to your previous version.
+
+```bash
+exokern-eval \
+  --policy my_new_checkpoint.pt \
+  --baseline my_old_best.json \
+  --output report.html
+```
+
+### 2. Challenge the EXOKERN Foundation Models
+If you are evaluating on a standard environment, `exokern-eval` ships with the official validated benchmarks of **EXOKERN's Contact-rich Foundation Models**. 
+
+When using `--baseline auto` (the default), your policy is automatically compared against the absolute SOTA. Download our pre-trained model weights directly from HuggingFace to see the gold standard in action:
+
+| Environment | Condition | Success Rate | Peak Force | SOTA Checkpoint Weights |
 |-------------|-----------|:---:|:---:|--------|
-| PegInsert | full_ft | 100% | 3.2 N | [EXOKERN/skill-forge-peginsert-v0](https://huggingface.co/EXOKERN/skill-forge-peginsert-v0) |
-| PegInsert | no_ft | 100% | 5.2 N | [EXOKERN/skill-forge-peginsert-v0](https://huggingface.co/EXOKERN/skill-forge-peginsert-v0) |
+| PegInsert | full_ft | 100% | 10.8 N | [EXOKERN/skill-forge-peginsert-v0](https://huggingface.co/EXOKERN/skill-forge-peginsert-v0) |
+| PegInsert | no_ft | 100% | 12.2 N | [EXOKERN/skill-forge-peginsert-v0](https://huggingface.co/EXOKERN/skill-forge-peginsert-v0) |
 
 ## Example Output
 
