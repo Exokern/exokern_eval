@@ -2,7 +2,11 @@
 
 **Policy Report Card generator for contact-rich manipulation skills.**
 
-Evaluate any policy checkpoint against standardized sim scenarios and get a publication-ready report with success rate, force profiles, and automatic comparison against EXOKERN baselines.
+Evaluate any policy checkpoint against standardized sim scenarios and get a publication-ready report with success rate, force profiles, and automatic comparison against [EXOKERN](https://huggingface.co/EXOKERN) baselines.
+
+<p align="center">
+  <img src="assets/report_dashboard.png" alt="EXOKERN Policy Report Card — HTML Dashboard" width="700">
+</p>
 
 ## Quick Start
 
@@ -15,6 +19,10 @@ exokern-eval \
   --episodes 100 \
   --output report.html
 ```
+
+<p align="center">
+  <img src="assets/terminal_output.png" alt="exokern-eval terminal output" width="600">
+</p>
 
 This produces an HTML report card with:
 - Success rate with 95% confidence interval
@@ -104,49 +112,7 @@ exokern-eval ships with EXOKERN's validated baselines. When `--baseline auto` (t
 
 ## Example Output
 
-### Terminal
-
-```
-  ╔══════════════════════════════════════════╗
-  ║   EXOKERN-EVAL v0.1.0                   ║
-  ║   Policy Report Card Generator          ║
-  ╚══════════════════════════════════════════╝
-
-  Device: cuda
-  Policy: results/full_ft_seed42/best_model.pt
-  Env:    Isaac-Forge-PegInsert-Direct-v0
-  Episodes: 100
-
-  Loading policy...
-  Loaded: condition=full_ft obs_dim=22 action_dim=7
-  Baseline: EXOKERN Isaac-Forge-PegInsert-Direct-v0 (full_ft)
-
-  Running 100 rollouts...
-    Episode 10/100 | Success rate: 100.0%
-    ...
-    Episode 100/100 | Success rate: 100.0%
-
-  ┌─────────────────────┬────────────────┐
-  │ Metric              │ Value          │
-  ├─────────────────────┼────────────────┤
-  │ Success Rate        │      100.0%    │
-  │   95% CI            │  [96.3%, 100.0%]│
-  │ Avg Force           │        3.7 N    │
-  │ Peak Force          │       10.8 N    │
-  │ Avg Time            │       26.9 s    │
-  │ Episodes            │        100      │
-  └─────────────────────┴────────────────┘
-
-  vs EXOKERN Baseline:
-    Success Rate:  +0.0%
-    Avg Force:     +0.5 N (worse)
-
-  Report saved: report.html
-```
-
-### HTML Report
-
-The HTML report is a single self-contained file with a dark-themed dashboard showing metrics, grades, and baseline comparison bars.
+See the screenshots above for terminal and HTML output. The HTML report is a single self-contained file -- no server needed, just open it in a browser.
 
 ## How It Works
 
